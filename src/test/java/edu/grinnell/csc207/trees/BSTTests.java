@@ -15,6 +15,11 @@ public class BSTTests {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
         // TODO: make a sample tree consisting of 3, 5, 2, 6, and 4
         //       through repeated calls to insert.
+        tree.insert(3);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(6);
+        tree.insert(4);
         return tree;
     }
 
@@ -39,23 +44,23 @@ public class BSTTests {
 
     @Test
     public void basicToStringTest() {
-        assertEquals("[0, 5, 6, 7, 11]", mkSampleTree().toString());
+        assertEquals("[2, 3, 4, 5, 6]", mkSampleTree().toString());
     }
 
     @Test
     public void basicToListTest() {
         // N.B., need to upcast the Integer[] array to avoid a ClassCastException that
         // arises from downcasting the result of toArray to Integer[].
-        assertArrayEquals((Object[]) new Integer[] {0, 5, 6, 7, 11},
+        assertArrayEquals((Object[]) new Integer[] {2, 3, 4, 5, 6},
                           mkSampleTree().toList().toArray());
     }
 
     @Test
     public void basicSortTest() {
         assertArrayEquals(
-            (Object[]) new Integer[] {0, 5, 6, 7, 11},
+            (Object[]) new Integer[] {2, 3, 4, 5, 6},
             BinarySearchTree.<Integer> sort(
-                java.util.Arrays.asList(0, 5, 6, 7, 11)).toArray());
+                java.util.Arrays.asList(2, 3, 4, 5, 6)).toArray());
     }
 
     @Test
