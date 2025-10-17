@@ -69,7 +69,7 @@ public class BSTTests {
         assertEquals(5, tree.size());
         assertTrue(tree.contains(6));
         tree.delete(6);
-        assertEquals(4, tree.size());
+       assertEquals(4, tree.size());
         assertFalse(tree.contains(6));
     }
 }

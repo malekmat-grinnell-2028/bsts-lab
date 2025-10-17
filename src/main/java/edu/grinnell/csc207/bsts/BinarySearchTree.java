@@ -196,27 +196,40 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
         curr_node = curr_node.left;
      }
 
-    public void deleteRecur(Node<T> n, T value) throws IllegalArgumentException{
+    public void deleteRecur(Node<T> n, Node<T> parent, T value) throws IllegalArgumentException{
+
         if(n == null) {
             return;
         }
         int comp = n.value.compareTo(value);
         if(comp == 0) {
             if(n.right == null && n.left == null){
-                n = null;
+                if(parent.right == n){
+                    parent.right = null;
+                }else{
+                    parent.left = null;
+                }
             } else if(n.right == null) {
-                n = n.left;
+                if(parent.right == n){
+                    parent.right = n.left;
+                }else{
+                    parent.left = n.left;
+                }
             } else if(n.left == null){
-                n = n.right;
+                if(parent.right == n){
+                    parent.right = n.right;
+                }else{
+                    parent.left = n.right;
+                }
             } else {
                 deleteH(n);
 
             }
             return;
         } else if(comp > 0) {
-            deleteRecur(n.left, value);
+            deleteRecur(n.left, n, value);
         }
-            deleteRecur(n.right, value);
+            deleteRecur(n.right, n, value);
         
     }
     
@@ -228,6 +241,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
      * @param value the value to delete
      */
     public void delete(T value) {
-        deleteRecur(root, value);
+        deleteRecur(root.left, root, value);
+        deleteRecur(root.right, root, value);
     }
 }
